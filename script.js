@@ -1,53 +1,71 @@
 const container = document.querySelector('.container');
+const buttonsContainer = document.querySelector('.buttons');
 const colorButtons = document.querySelectorAll('.btn--choice');
 const userColorPicker = document.querySelector('#input-color');
 const clearButton = document.querySelector('.btn--clear');
 var slider = document.querySelector('#sizeRange');
 var color = 'black';
 
+function pixelSize() {
+    let gridPixels = container.querySelectorAll('div');
+    gridPixels.forEach(gridPixel => gridPixel.remove());
+    createGrid(slider.value);
+}
+
 function createGrid (gridNumber) { 
     let gridArea = gridNumber * gridNumber;
     for (let i = 1; i <= gridArea; i++) {
         let gridItem = document.createElement('div');
-        container.style.gridTemplateColumns = `repeat(${gridNumber}, 1fr)`;
-        container.style.gridTemplateRows = `repeat(${gridNumber}, 1fr)`;
         container.insertAdjacentElement('beforeend', gridItem);
-    } 
-    var gridPixels = container.querySelectorAll('div');
-    gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorGrid));
+    }
+    container.style.gridTemplateColumns = `repeat(${gridNumber}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${gridNumber}, 1fr)`; 
 }
 
-function colorGrid() {
+// On Page Load - default size
+createGrid(10);
+
+let prevActiveBtn;
+function setActiveBtn(event) {
+  const isBtn = event.target.classList.contains('btn--choice');
+  const activeBtn = event.target;
+  if(!isBtn) {
+    prevActiveBtn?.classList.remove('active');
+  }
+  activeBtn.classList.add('active');
+  prevActiveBtn?.classList.remove('active');
+  console.log(prevActiveBtn);
+  prevActiveBtn = activeBtn;
+}
+
+function changeColorGrid(e) {
+    colorGrid(e.target);
+}
+
+function colorGrid(gridPixel) {
     switch (color) {
         case 'rainbow':
-            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            this.classList.remove('gray');
+            gridPixel.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            gridPixel.classList.remove('gray');
             break;  
         case 'gray':
-           this.style.backgroundColor = 'gray';
+           gridPixel.style.backgroundColor = `rgba(128,128,128,${Math.random()})`
             break;
         case 'eraser':
-            this.style.backgroundColor = '#ffffff';
-            this.classList.remove('gray');
+            gridPixel.style.backgroundColor = '#ffffff';
+            gridPixel.classList.remove('gray');
             break;
         case 'black':
-            this.style.backgroundColor = '#000000';
-            this.classList.remove('gray');
+            gridPixel.style.backgroundColor = '#000000';
+            gridPixel.classList.remove('gray');
             break;
         default:
-            this.style.backgroundColor = color;
-            this.classList.remove('gray');
+            gridPixel.style.backgroundColor = color;
+            gridPixel.classList.remove('gray');
             break;
     } 
 }
 
-// Clear Button
-function eraseAllColor() {
-    var gridPixels = container.querySelectorAll('div');
-    gridPixels.forEach(gridPixel => gridPixel.style.backgroundColor = '#ffffff');
-}
-
-// Updates color variable when a color button is clicked
 function changeColor(event) {
     switch (event.target.dataset.color) { 
         case 'rainbow':
@@ -65,28 +83,21 @@ function changeColor(event) {
     } 
 }
 
-function pixelSize() {
-    let gridPixels = container.querySelectorAll('div');
-    gridPixels.forEach(gridPixel => gridPixel.remove());
-    createGrid(slider.value);
-}
-
 function userColorSelection(event) {
-    color = event.target.value;
+  color = event.target.value;
 }
 
-// On Page Load - default size
-createGrid(10);
+// Clear Button
+function eraseAllColor() {
+  var gridPixels = container.querySelectorAll('div');
+  gridPixels.forEach(gridPixel => gridPixel.style.backgroundColor = '#ffffff');
+}
 
-// Event Listeners
-clearButton.addEventListener('click', eraseAllColor);
-clearButton.addEventListener('mouseover', buttonHover);
-clearButton.addEventListener('mouseout', buttonStandard);
-// bitno
-colorButtons.forEach(colorButton => colorButton.addEventListener('click', changeColor));
-colorButtons.forEach(colorButton => colorButton.addEventListener('mouseover', buttonHover));
-colorButtons.forEach(colorButton => colorButton.addEventListener('mouseout', buttonStandard));
-// bitno
+
 slider.addEventListener('mouseup', pixelSize);
+container.addEventListener('mouseover', changeColorGrid);
+buttonsContainer.addEventListener('click',setActiveBtn);
+colorButtons.forEach(colorButton => colorButton.addEventListener('click', changeColor));
 userColorPicker.addEventListener('change', userColorSelection, false);
 userColorPicker.addEventListener('input', userColorSelection, false);
+clearButton.addEventListener('click', eraseAllColor);

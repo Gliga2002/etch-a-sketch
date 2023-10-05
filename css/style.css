@@ -11,7 +11,7 @@ html {
 }
 
 :root {
- --content-width: 400px;
+ --content-width: 440px;
  --text-color--1:#ffffff;
  --text-color--2:#ff0000;
  --text-color--3:#000000;
@@ -20,15 +20,22 @@ html {
 body {
   background-image: url(../img/wild_oliva_@2X.png);
   font-family: 'Audiowide', cursive;
-  font-family: 'Barlow', sans-serif;
   height: 100vh;
   display:flex;
   justify-content: center;
 }
 
 main{
-    max-width:var(--content-width);
-    max-height: var(--content-width);
+ max-width:var(--content-width);
+ max-height: var(--content-width);
+}
+
+.main__heading {
+ font-size: 3.4rem;
+ text-align: center;
+ margin:20px;
+ letter-spacing: 2px;
+ color:var(--text-color--2);
 }
 
 .container__wrapper {
@@ -36,31 +43,21 @@ main{
  max-height: var(--content-width);
  height: 75vh;
  margin:20px auto;
- border:5px solid black;
+ border:15px solid #aaaaaa;
  position:relative;
 }
 
 .container {
-    display: grid;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: white;
+ display: grid;
+ width: 100%;
+ height: 100%;
+ position: absolute;
+ background-color: white;
 }
 
-.main__heading {
- font-size: 2.5rem;
- text-align: center;
- margin:20px;
- color:red;
-}
-
-#input-color {
- border: none;
- height: 25px;
- width: 25px;
- padding: 0;
- background-color: var(--text-color--3);
+.buttons {
+  display:flex;
+  align-items: center;
 }
 
 .btn {
@@ -72,19 +69,43 @@ main{
  background-color: var(--text-color--3);
  color: var(--text-color--2);
  line-height: 27px;
+ border:1px solid var(--text-color--2);
+}
+
+.btn:hover {
+ border:1px solid var(--text-color--1);
+}
+
+.active{
+ outline:none;
+ box-shadow:0 1px 10px 0 rgba(240, 240, 240, 1)
+}
+
+.btn--picker{
+  display: flex;
+  align-items: center;
+  gap:5px;
+}
+
+#input-color {
+ border: none;
+ height: 25px;
+ width: 25px;
+ padding: 0;
+ background-color: var(--text-color--3);
 }
 
 .container__options {
-    display:flex;
-    width:100%;
-    align-items: center;
-    margin-bottom: 30px;
+ display:flex;
+ width:100%;
+ align-items: center;
+ margin-bottom: 30px;
 }
 
 .container__options__size {
-    width: 100%;
-    padding-left: 10px;
-    margin-right: 5px;
+ width: 100%;
+ padding-left: 10px;
+ margin-right: 5px;
 }
 
 .container__options__size p{
@@ -95,40 +116,40 @@ main{
 }
 
 .slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 15px;
-    background: red;
-    outline: none;
-    transform: rotate(180deg);
-    transition: 0.2s;
-    border-radius: 7px;
+ -webkit-appearance: none; /* Removes default styling in WebKit browsers (like Chrome and Safari) */
+ width: 100%;
+ height: 15px;
+ background: red;
+ outline: none;
+ transform: rotate(180deg);
+ transition: 0.2s;
+ border-radius: 7px;
 }
 
 /* Chrome */
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 30px;
-    height: 30px;
-    background: white;
-    border-radius: 50%;
-    cursor: pointer;
+ -webkit-appearance: none; /* Removes default styling for the slider thumb in WebKit browsers */
+ appearance: none; /* Removes default styling for the slider thumb in non-WebKit browsers */
+ width: 30px;
+ height: 30px;
+ background: white;
+ border-radius: 50%;
+ cursor: pointer;
 }
 
 /* Firefox */
 slider::-moz-range-thumb {
-    width: 15px;
-    height: 30px;
-    background: white;
-    border-radius: 7px;
-    cursor: pointer;
+ width: 15px;
+ height: 30px;
+ background: white;
+ border-radius: 7px;
+ cursor: pointer;
 }
 
 .project__info {
-    text-align: center;
-    font-size: 1.8rem;
-    color:var(--text-color--1);
+ text-align: center;
+ font-size: 1.5rem;
+ color:var(--text-color--3);
 }
 
 
