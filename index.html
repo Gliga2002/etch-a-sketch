@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Etch-a-Sketch</title>
+  <script defer src="./script.js"></script>
+</head>
+<body>
+    <main>
+        <h1 class="main__heading">Mouse-O-Sketch</h1>
+        <div class="buttons">
+            <button class="btn btn--choice btn--black" data-color="black" type="button">Black</button>
+            <button class="btn btn--choice btn--rainbow" data-color="rainbow" type="button">Rainbow</button>
+            <button class="btn btn--choice btn--gray" data-color="gray" type="button">Gray</button>
+            <button class="btn btn--choice btn--eraser" data-color="eraser" type="button">Eraser</button>
+            <button class="btn btn--choice btn--gray" data-color="gray">
+                Pick <input type="color" value="#ff0000" id="input-color">
+            </button>
+        </div>
+        <div class="container__wrapper">
+            <div class="container"></div>
+        </div>
+        <div class="container__options">
+            <button class="btn btn--clear" type="button">Clear</button>
+        <div class="container__options__size">
+            <p>Pixel Size</p>
+            <input type="range" min="4" max="100" id="sizeRange" class="slider">
+            <p>Smallest to Largest</p>
+        </div>
+        </div>
+        <p class="project__info">This project is part of Odin Project curiculum</p>
+    </main>
+    
+</body>
+</html>
