@@ -16,6 +16,7 @@ function createGrid (gridNumber) {
     let gridArea = gridNumber * gridNumber;
     for (let i = 1; i <= gridArea; i++) {
         let gridItem = document.createElement('div');
+        gridItem.style.transition = 'all 0.3s';
         container.insertAdjacentElement('beforeend', gridItem);
     }
     container.style.gridTemplateColumns = `repeat(${gridNumber}, 1fr)`;
