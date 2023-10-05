@@ -25,12 +25,13 @@ function createGrid (gridNumber) {
 // On Page Load - default size
 createGrid(10);
 
-let prevActiveBtn;
+let prevActiveBtn = document.querySelector('.btn--black');
 function setActiveBtn(event) {
   const isBtn = event.target.classList.contains('btn--choice');
   const activeBtn = event.target;
   if(!isBtn) {
     prevActiveBtn?.classList.remove('active');
+    return;
   }
   activeBtn.classList.add('active');
   prevActiveBtn?.classList.remove('active');
